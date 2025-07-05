@@ -10,14 +10,6 @@ Bank::~Bank(){
 const int& Bank::getLiquidity()const {
     return(this->Liquidity);
 }
-int Bank::checkIds(int id){
-    for(int i = 0; i < this->Clients.size(); i++){
-        if(this->Clients[i].getId() == id)
-            return(1);
-        i++;
-    }
-    return(0);
-}
 int Bank::deleteAccount(Account client) {
     int id = client.getId();
     for(int i = 0; i < this->Clients.size();i++){
@@ -31,11 +23,20 @@ int Bank::deleteAccount(Account client) {
       std::cout << "No account  with ID " << id << " was found " << std::endl;
     return(0);
 }
-void Bank::createNewAccount(int value) {
-    int Id = this->Clients.size() + 1;
+int Bank::checkId(int id){
     for(int i = 0; i < this->Clients.size(); i++){
-        if(this->Clients[i].getId() == Id){
-        }
+        if(this->Clients[i].getId() == id)
+            return(1);
+        i++;
+    }
+    return (0);
+}
+
+void Bank::createNewAccount( int value) {
+    int id = 0; 
+    if(!this->checkId(id)){
+        std::cout << "Id " << id << " already exists " << std::endl;
+        return ;
     }
     int finalValue = value - (value * 5) / 100;
     if( finalValue <= 0) {

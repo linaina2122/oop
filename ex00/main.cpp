@@ -3,5 +3,5 @@
 int main(){
 
     Bank b(12);
-    b.createNewAccount();
+    b.createNewAccount( 260);
 }

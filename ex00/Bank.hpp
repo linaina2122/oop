@@ -16,9 +16,9 @@ class Bank{
         void setLiquidity(int l);
         const int &getLiquidity()const;
         void createNewAccount(int value);
-        int checkIds(int id);
         void addToAccount(Account client);
         int deleteAccount(Account client);
+        int checkId(int id);
         void addLoan(Account client, int value);
         
 
