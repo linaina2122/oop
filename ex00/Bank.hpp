@@ -15,10 +15,10 @@ class Bank{
         ~Bank();
         void setLiquidity(int l);
         const int &getLiquidity()const;
-        void createNewAccount();
+        void createNewAccount(int value);
         int checkIds(int id);
         void addToAccount(Account client);
-        void deleteAccount(Account client);
+        int deleteAccount(Account client);
         void addLoan(Account client, int value);
         
 

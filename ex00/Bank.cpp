@@ -18,13 +18,30 @@ int Bank::checkIds(int id){
     }
     return(0);
 }
-void Bank::createNewAccount(){
-    int Id = rand();
-    if(this->checkIds(Id)){
-        std::cout << "Account Id already exists" << std::endl;
-        this->Clients.push_back(Id + 7);
+int Bank::deleteAccount(Account client) {
+    int id = client.getId();
+    for(int i = 0; i < this->Clients.size();i++){
+        if(this->Clients[i].getId() == id){
+            this->Liquidity -= (this->Clients[i].getValue() * 5) / 100;
+            this->Clients.erase(this->Clients.begin() + i);
+            std::cout << "Account with ID " << id << " deleted." << std::endl;
+            return(1);
+        }
     }
-    else{
-        this->Clients.push_back(Account(Id));
+      std::cout << "No account  with ID " << id << " was found " << std::endl;
+    return(0);
+}
+void Bank::createNewAccount(int value) {
+    int Id = this->Clients.size() + 1;
+    for(int i = 0; i < this->Clients.size(); i++){
+        if(this->Clients[i].getId() == Id){
+        }
     }
+    int finalValue = value - (value * 5) / 100;
+    if( finalValue <= 0) {
+        std::cout << "Insufficient funds to create account." << std::endl;
+        return;
+    }
+    this->Liquidity += finalValue;
+    this->Clients.push_back(Account(Id, finalValue));
 }
