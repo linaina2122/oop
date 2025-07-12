@@ -11,5 +11,7 @@ class Account {
         void setId(int id);
          const int &getId ()const ;
          const int &getValue ()const ;
+         void addValue(int value);
+
 };
 
