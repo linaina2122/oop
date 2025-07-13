@@ -8,14 +8,13 @@
 class Bank{
     private:
         int Liquidity;
-       std::vector<Account> Clients;
+       std::vector<Account *> Clients;
     public:
          Bank(int liquidity);
         ~Bank();
         void setLiquidity(int l);
         const int &getLiquidity()const;
-        void createNewAccount(int value);
-        void addToAccount(Account client);
+        int createNewAccount(int value);
         int deleteAccount(int id);
         int isTaken(int id);
         void addLoan(int id, int value);   

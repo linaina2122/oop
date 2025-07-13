@@ -8,6 +8,7 @@ Account::Account(int id, int value){
 Account::~Account(){
     std::cout << "Account destrcutor called" << std::endl;
 }
+
 void Account::setId(int id){
     this->Id = id;
 }
