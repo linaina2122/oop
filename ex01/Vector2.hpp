@@ -1,6 +1,6 @@
 #include <vector>
 #include <list>
-
+#include <iostream>
 
 class Vector2 {
     private :
@@ -13,16 +13,4 @@ class Vector2 {
         void setY(float Y);
         const float &getX ()const;
         const float &getY ()const;
-};
-
-class Graph {
-    private:
-    Vector2 size;
-    std::list<Vector2> l;
-    public :
-    Graph();
-    ~Graph();
-
-
-
 };
