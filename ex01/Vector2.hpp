@@ -7,10 +7,9 @@ class Vector2 {
         float x;
         float y;
     public:
-        Vector2();
+        Vector2();   
+        Vector2(float X, float Y);
         ~Vector2();
-        void setX(float X);
-        void setY(float Y);
         const float &getX ()const;
         const float &getY ()const;
 };

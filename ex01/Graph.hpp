@@ -13,6 +13,8 @@ class Graph {
     void setL(std::list<Vector2> L);
     const Vector2 &getSize ()const;
     const std::list<Vector2> &getL ()const;
-    void addPoint();
+    int matched(float x , float y);
+    int addPoint(float x, float y);
     void display();
+
 };
