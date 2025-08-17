@@ -53,7 +53,6 @@ int Graph::matched(float x , float y)
 
 void Graph::display()
 {
-    //create a file where the output will be displayed
     float Y = this->size.getY() - 1;
     while(Y >=0 )
     {
@@ -61,10 +60,10 @@ void Graph::display()
         float X = 0;
         while(X < this->size.getX())
         {
-            //if(this->matched(X, Y))
-                //display x in the file
-          //  else
-               //display x in the file
+            if(this->matched(X, Y))
+                std::cout << "x";
+            else
+                std::cout << ".";
             X++;
         }
             std::cout << std::endl;
