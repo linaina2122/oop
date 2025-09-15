@@ -53,25 +53,55 @@ int Graph::matched(float x , float y)
 
 void Graph::display()
 {
-    //create a file where the output will be displayed
+    std::fstream File("Graph.txt");
     float Y = this->size.getY() - 1;
     while(Y >=0 )
     {
-        std::cout << Y;
+        File << Y;
         float X = 0;
         while(X < this->size.getX())
         {
-            //if(this->matched(X, Y))
-                //display x in the file
-          //  else
-               //display x in the file
+            if(this->matched(X, Y))
+                File << "x";
+            else
+                File << ".";
             X++;
         }
-            std::cout << std::endl;
+            File << std::endl;
             Y--;
         }
-        std::cout << ' ';
+        File << ' ';
     for(float X = 0 ; X < this->size.getX(); X++)
-        std::cout << X;
-    std::cout << std::endl;
+        File << X;
+    File << std::endl;
+    this->toPpm(File);
+}
+
+void Graph::toPpm(std::fstream &file)
+{
+    std::string tmp;
+    std::fstream File("Graph.ppm", std::ios::in | std::ios::out | std::ios::trunc);
+    file.seekg(0, std::ios::beg); 
+    File << "P3" << std::endl;
+    File << this->size.getX() << " " << this->size.getY() << std::endl;
+    File << 255 << std::endl;
+
+    while(std::getline(file, tmp))
+    {
+        int i = 0;
+        while(i < this->size.getX())
+        {
+            if(tmp[i] >= 48 && tmp[i] <= 56)
+            {
+                File << 0;
+
+            }
+            else if( tmp[i] == '.')
+                File << 255;
+            else if (tmp[i] == 'x')
+                File << 200;
+            i++;
+        }
+        File << std::endl;
+    }
 }

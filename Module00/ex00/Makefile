@@ -1,12 +1,15 @@
-NAME = ex00
+	
+NAME = main
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = Bank.cpp Account.cpp main.cpp
+SRC = main.cpp Account.cpp Bank.cpp
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(SRC:.cpp=.o) 
 
-all : $(NAME)
+CXX = c++
+
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) -o $(NAME) $(OBJ)
