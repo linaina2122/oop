@@ -80,7 +80,7 @@ void Graph::display()
 void Graph::toPpm(std::fstream &file)
 {
     std::string tmp;
-    std::fstream File("Graph.ppm", std::ios::in | std::ios::out | std::ios::trunc);
+    std::ofstream File("Graph.ppm", std::ios::trunc);
     file.seekg(0, std::ios::beg); 
     File << "P3" << std::endl;
     File << this->size.getX() << " " << this->size.getY() << std::endl;
@@ -88,20 +88,19 @@ void Graph::toPpm(std::fstream &file)
 
     while(std::getline(file, tmp))
     {
-        int i = 0;
-        while(i < this->size.getX())
+        
+        for(int i = 0; i < this->size.getX(); ++i)
         {
+            char c = (i < tmp.size()) ? tmp[i] : '.';
             if(tmp[i] >= 48 && tmp[i] <= 56)
-            {
-                File << 0;
-
-            }
+                File << "0 0 0";
             else if( tmp[i] == '.')
-                File << 255;
+                File << "255 255 255";
             else if (tmp[i] == 'x')
-                File << 200;
-            i++;
+                File << "200 200 200";
+            File << " ";
         }
         File << std::endl;
     }
 }
+
