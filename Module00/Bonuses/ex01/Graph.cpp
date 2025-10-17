@@ -80,8 +80,10 @@ void  Graph::display()
 
     std::vector<unsigned char> image(width * height * 3, 255);
 
-    drawLine(image, width, height, 100 , 250 , (this->size.getX()) + 250,  250 , 0, 0, 0);
-    drawLine(image, width, height, 100, 100, 100, (this->size.getY() + 250) , 0, 0, 0);
+    drawLine(image, width, height, 100 , 250 , (this->size.getX()) + 250,  250 , 0, 0, 0, 2);
+    drawLine(image, width, height, 100, 100, 100, (this->size.getY() + 250) , 0, 0, 0, 2);
+    drawLine(image, width, height, 100, 200, 100, 200 , 250, 0 , 0, 2);
+
     if (stbi_write_png("Graph.png", width, height, 3, &image[0], width * 3))
         std::cout << "PNG written: test_line.png\n";
     else

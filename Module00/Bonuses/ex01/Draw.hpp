@@ -6,4 +6,4 @@
 
 void drawLine(std::vector<unsigned char>& img, int width, int height,
               int x0, int y0, int x1, int y1,
-              unsigned char r, unsigned char g, unsigned char b);
+              unsigned char r, unsigned char g, unsigned char b, int thickness);
