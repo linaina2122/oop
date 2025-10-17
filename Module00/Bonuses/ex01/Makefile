@@ -1,6 +1,6 @@
 NAME  = Graph
 
-SRCS  = Graph.cpp Vector2.cpp main.cpp
+SRCS  = Graph.cpp Vector2.cpp main.cpp Draw.cpp
 
 OBJS  = $(SRCS:.cpp=.o)
 

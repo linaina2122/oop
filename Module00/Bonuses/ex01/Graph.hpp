@@ -1,8 +1,9 @@
 #include <vector>
 #include <list>
 #include <map>
-#include "Vector2.hpp"
 #include <fstream>
+#include "Draw.hpp"
+#include "../stb/stb_image_write.h"
 
 class Graph {
     private:
@@ -17,7 +18,5 @@ class Graph {
     const std::list<Vector2> &getL ()const;
     int matched(float x , float y);
     int addPoint(float x, float y);
-    void toPpm(std::fstream &File);
     void display();
-
 };
