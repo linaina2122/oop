@@ -54,7 +54,8 @@ int Graph::matched(float x, float y)
 
 void  Graph::display()
 {
-    std::fstream File("Graph.txt");
+    std::fstream File("Graph.txt", std::ios::out | std::ios::trunc);
+
     float Y = this->size.getY() - 1;
     while(Y >=0 )
     {
@@ -75,17 +76,20 @@ void  Graph::display()
     for(float X = 0 ; X < this->size.getX(); X++)
         File << X;
     File << std::endl;
-        const int width = 500;
-    const int height = 500;
-
-    std::vector<unsigned char> image(width * height * 3, 255);
-
-    drawLine(image, width, height, 100 , 250 , (this->size.getX()) + 250,  250 , 0, 0, 0, 2);
-    drawLine(image, width, height, 100, 100, 100, (this->size.getY() + 250) , 0, 0, 0, 2);
-    drawLine(image, width, height, 100, 200, 100, 200 , 250, 0 , 0, 2);
-
-    if (stbi_write_png("Graph.png", width, height, 3, &image[0], width * 3))
-        std::cout << "PNG written: test_line.png\n";
+    std::vector<unsigned char> image(WIDTH * HEIGHT * 3, 255);
+    drawLine(image, WIDTH, HEIGHT, X0 , HEIGHT - Y0 , (this->size.getX()) + WIDTH / 2,   HEIGHT - Y0, 0, 0, 0, 2);
+    drawLine(image, WIDTH, HEIGHT, X0, HEIGHT - Y0, X0, (this->size.getY() + HEIGHT / 2) , 0, 0, 0, 2);
+    std::list<Vector2>::iterator it = this->l.begin();
+    while( it != this->l.end())
+    {
+        int px = X0 + it->getX() * 20;
+        int py = HEIGHT - (Y0 + it->getY() * 20);
+         drawLine(image, WIDTH, HEIGHT, X0 + it->getX() * 20, HEIGHT - (Y0 + it->getY() * 20)
+         , X0 + it->getX() * 20 , HEIGHT - (Y0 + it->getY() * 20), 250, 0 , 0, 2);
+        it++;
+    }
+    if (stbi_write_png("Graph.png", WIDTH, HEIGHT, 3, &image[0], WIDTH * 3))
+        std::cout << "png generated successfuly\n";
     else
         std::cout << "Failed to write PNG\n";
 }
