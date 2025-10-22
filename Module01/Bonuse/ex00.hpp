@@ -38,7 +38,7 @@ class Worker {
         std::vector<Tool*> getTools() const;
         void registerToWorkShop(Workshop *workshop);
         void Work();
-
+        Tool* GetTool(Tool *t);
 };
 
 class Tool {
@@ -84,4 +84,8 @@ class Workshop {
         void signUp(Worker *worker);
         void leaveWorkshop(Worker *worker);
         void executeWorkDay(Worker *worker);
+};
+
+std::template <std::typename T>{
+
 };

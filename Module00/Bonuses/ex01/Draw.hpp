@@ -11,3 +11,6 @@ void drawPoint(std::vector<unsigned char>& img, int width, int height,
                int x, int y,
                unsigned char r, unsigned char g, unsigned char b,
                int size);
+void drawChart(std::vector<unsigned char>& img, int width, int height,
+               std::vector<std::pair<int, int>>& points,
+               unsigned char r, unsigned char g, unsigned char b,  int lineThickness);

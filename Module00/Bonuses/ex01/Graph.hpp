@@ -25,4 +25,5 @@ class Graph {
     int matched(float x , float y);
     int addPoint(float x, float y);
     void display();
+    void Chart();
 };

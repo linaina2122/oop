@@ -54,40 +54,50 @@ int Graph::matched(float x, float y)
 
 void  Graph::display()
 {
-    std::fstream File("Graph.txt", std::ios::out | std::ios::trunc);
-
     float Y = this->size.getY() - 1;
-    while(Y >=0 )
+    while(Y >= 0)
     {
-        File << Y;
+        std::cout << Y;
         float X = 0;
         while(X < this->size.getX())
         {
             if(this->matched(X, Y))
-                File << "x";
+                std::cout << "x"; 
             else
-                File << ".";
+                std::cout << ".";
             X++;
         }
-            File << std::endl;
+            std::cout << std::endl;
             Y--;
         }
-        File << ' ';
+        std::cout << ' ';
     for(float X = 0 ; X < this->size.getX(); X++)
-        File << X;
-    File << std::endl;
+        std::cout  << X;
+    std::cout << std::endl;
+    this->Chart();
+}
+void Graph::Chart()
+{
+    std::fstream File("Points.txt", std::ios::out | std::ios::trunc);
+    std::vector<std::pair<int, int>> points;
+    if(! File)
+        {
+            std::cout << "File failed to open " << std::endl;
+            return ;
+        }
     std::vector<unsigned char> image(WIDTH * HEIGHT * 3, 255);
     drawLine(image, WIDTH, HEIGHT, X0 , HEIGHT - Y0 , (this->size.getX()) + WIDTH / 2,   HEIGHT - Y0, 0, 0, 0, 2);
     drawLine(image, WIDTH, HEIGHT, X0, HEIGHT - Y0, X0, (this->size.getY() + HEIGHT / 2) , 0, 0, 0, 2);
     std::list<Vector2>::iterator it = this->l.begin();
     while( it != this->l.end())
     {
+        File << it->getX() << "      " << it->getY() << std::endl;
+        points.push_back({it->getX(), it->getY()});
         int px = X0 + it->getX() * 20;
         int py = HEIGHT - (Y0 + it->getY() * 20);
-         drawLine(image, WIDTH, HEIGHT, X0 + it->getX() * 20, HEIGHT - (Y0 + it->getY() * 20)
-         , X0 + it->getX() * 20 , HEIGHT - (Y0 + it->getY() * 20), 250, 0 , 0, 2);
         it++;
     }
+    drawChart(image, WIDTH, HEIGHT, points, 0 , 0 , 255 , 1);
     if (stbi_write_png("Graph.png", WIDTH, HEIGHT, 3, &image[0], WIDTH * 3))
         std::cout << "png generated successfuly\n";
     else

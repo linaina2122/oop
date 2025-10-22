@@ -53,26 +53,26 @@ void drawLine(std::vector<unsigned char> &img, int width, int height,
     }
 }
 
-void drawPoint(std::vector<unsigned char> &img, int width, int height, int x, int y,
-               unsigned char r, unsigned char g, unsigned char b, int size)
+
+void drawChart(std::vector<unsigned char>& img, int width, int height,
+                std::vector<std::pair<int, int>>& points,
+               unsigned char r, unsigned char g, unsigned char b,
+             int lineThickness)
 {
-    int Dx = -size; //to start from the center
-    int Dy = -size;
-    while (Dy <= size)
+    if (points.size() < 2)
+        return;
+
+    for (size_t i = 0; i < points.size(); ++i)
     {
-        ++Dy;
-        while (Dx <= size)
+        int x = points[i].first * 20 + X0;
+        int y = HEIGHT - (Y0 + points[i].second * 20);
+        if (i > 0)
         {
-            Dx++;
-            int X = Dx + x; // put a pixel to the right or left
-            int Y = Dy + y; // put a pixel up or down
-            if (X >= 0 && X < width && Y >= 0 && Y < height)
-            {
-                int idx = (Y * width + X) * 3;
-                img[idx + 0] = r;
-                img[idx + 1] = g;
-                img[idx + 2] = b;
-            }
+            int xPrev = points[i - 1].first * 20 + X0;
+            int yPrev = HEIGHT - (Y0 + points[i - 1].second * 20);
+
+            drawLine(img, width, height, xPrev, yPrev, x, y, r, g, b, 1);
         }
     }
 }
+
